@@ -17,11 +17,24 @@
 # specific language governing permissions and limitations
 # under the License.
 
-require 'selenium/webdriver/support/event_firing_bridge'
-require 'selenium/webdriver/support/abstract_event_listener'
-require 'selenium/webdriver/support/block_event_listener'
-require 'selenium/webdriver/support/escaper'
-require 'selenium/webdriver/support/select'
-require 'selenium/webdriver/support/color'
-require 'selenium/webdriver/support/relative_locator'
-require 'selenium/webdriver/support/cdp_client_generator'
+module Selenium
+  module WebDriver
+    class DevTools
+      class Audits
+
+        def initialize(devtools)
+          @devtools = devtools
+        end
+
+        def get_encoded_response(request_id:, encoding:, quality:, size_only:)
+          @devtools.send('Audits.getEncodedResponse',
+                         requestId: request_id,
+                         encoding: encoding,
+                         quality: quality,
+                         sizeOnly: size_only)
+        end
+
+      end # Audits
+    end # DevTools
+  end # WebDriver
+end #Selenium

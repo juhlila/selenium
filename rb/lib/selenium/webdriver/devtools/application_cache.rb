@@ -17,11 +17,34 @@
 # specific language governing permissions and limitations
 # under the License.
 
-require 'selenium/webdriver/support/event_firing_bridge'
-require 'selenium/webdriver/support/abstract_event_listener'
-require 'selenium/webdriver/support/block_event_listener'
-require 'selenium/webdriver/support/escaper'
-require 'selenium/webdriver/support/select'
-require 'selenium/webdriver/support/color'
-require 'selenium/webdriver/support/relative_locator'
-require 'selenium/webdriver/support/cdp_client_generator'
+module Selenium
+  module WebDriver
+    class DevTools
+      class ApplicationCache
+
+        def initialize(devtools)
+          @devtools = devtools
+        end
+
+        def enable
+          @devtools.send('ApplicationCache.enable')
+        end
+
+        def get_application_cache_for_frame(frame_id:)
+          @devtools.send('ApplicationCache.getApplicationCacheForFrame',
+                         frameId: frame_id)
+        end
+
+        def get_frames_with_manifests
+          @devtools.send('ApplicationCache.getFramesWithManifests')
+        end
+
+        def get_manifest_for_frame(frame_id:)
+          @devtools.send('ApplicationCache.getManifestForFrame',
+                         frameId: frame_id)
+        end
+
+      end # ApplicationCache
+    end # DevTools
+  end # WebDriver
+end #Selenium

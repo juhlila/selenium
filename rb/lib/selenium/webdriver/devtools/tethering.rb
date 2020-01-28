@@ -17,11 +17,26 @@
 # specific language governing permissions and limitations
 # under the License.
 
-require 'selenium/webdriver/support/event_firing_bridge'
-require 'selenium/webdriver/support/abstract_event_listener'
-require 'selenium/webdriver/support/block_event_listener'
-require 'selenium/webdriver/support/escaper'
-require 'selenium/webdriver/support/select'
-require 'selenium/webdriver/support/color'
-require 'selenium/webdriver/support/relative_locator'
-require 'selenium/webdriver/support/cdp_client_generator'
+module Selenium
+  module WebDriver
+    class DevTools
+      class Tethering
+
+        def initialize(devtools)
+          @devtools = devtools
+        end
+
+        def bind(port:)
+          @devtools.send('Tethering.bind',
+                         port: port)
+        end
+
+        def unbind(port:)
+          @devtools.send('Tethering.unbind',
+                         port: port)
+        end
+
+      end # Tethering
+    end # DevTools
+  end # WebDriver
+end #Selenium

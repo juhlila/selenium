@@ -17,11 +17,23 @@
 # specific language governing permissions and limitations
 # under the License.
 
-require 'selenium/webdriver/support/event_firing_bridge'
-require 'selenium/webdriver/support/abstract_event_listener'
-require 'selenium/webdriver/support/block_event_listener'
-require 'selenium/webdriver/support/escaper'
-require 'selenium/webdriver/support/select'
-require 'selenium/webdriver/support/color'
-require 'selenium/webdriver/support/relative_locator'
-require 'selenium/webdriver/support/cdp_client_generator'
+module Selenium
+  module WebDriver
+    class DevTools
+      class DeviceOrientation
+
+        def initialize(devtools)
+          @devtools = devtools
+        end
+
+        def clea_devic_orientatio_override
+          @devtools.send('DeviceOrientation.clearDeviceOrientationOverride')
+        end
+
+        def se_devic_orientatio_override(alpha:, beta:, gamma:)          @devtools.send('DeviceOrientation.setDeviceOrientationOverride',
+                         alpha: alpha,
+                         beta: beta,
+                         gamma: gamma,
+)        end
+
+        end

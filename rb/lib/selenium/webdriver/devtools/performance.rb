@@ -17,11 +17,33 @@
 # specific language governing permissions and limitations
 # under the License.
 
-require 'selenium/webdriver/support/event_firing_bridge'
-require 'selenium/webdriver/support/abstract_event_listener'
-require 'selenium/webdriver/support/block_event_listener'
-require 'selenium/webdriver/support/escaper'
-require 'selenium/webdriver/support/select'
-require 'selenium/webdriver/support/color'
-require 'selenium/webdriver/support/relative_locator'
-require 'selenium/webdriver/support/cdp_client_generator'
+module Selenium
+  module WebDriver
+    class DevTools
+      class Performance
+
+        def initialize(devtools)
+          @devtools = devtools
+        end
+
+        def disable
+          @devtools.send('Performance.disable')
+        end
+
+        def enable
+          @devtools.send('Performance.enable')
+        end
+
+        def set_time_domain(time_domain:)
+          @devtools.send('Performance.setTimeDomain',
+                         timeDomain: time_domain)
+        end
+
+        def get_metrics
+          @devtools.send('Performance.getMetrics')
+        end
+
+      end # Performance
+    end # DevTools
+  end # WebDriver
+end #Selenium

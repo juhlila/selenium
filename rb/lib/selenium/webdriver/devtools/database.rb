@@ -17,11 +17,35 @@
 # specific language governing permissions and limitations
 # under the License.
 
-require 'selenium/webdriver/support/event_firing_bridge'
-require 'selenium/webdriver/support/abstract_event_listener'
-require 'selenium/webdriver/support/block_event_listener'
-require 'selenium/webdriver/support/escaper'
-require 'selenium/webdriver/support/select'
-require 'selenium/webdriver/support/color'
-require 'selenium/webdriver/support/relative_locator'
-require 'selenium/webdriver/support/cdp_client_generator'
+module Selenium
+  module WebDriver
+    class DevTools
+      class Database
+
+        def initialize(devtools)
+          @devtools = devtools
+        end
+
+        def disable
+          @devtools.send('Database.disable')
+        end
+
+        def enable
+          @devtools.send('Database.enable')
+        end
+
+        def execute_sql(database_id:, query:)
+          @devtools.send('Database.executeSQL',
+                         databaseId: database_id,
+                         query: query)
+        end
+
+        def get_database_table_names(database_id:)
+          @devtools.send('Database.getDatabaseTableNames',
+                         databaseId: database_id)
+        end
+
+      end # Database
+    end # DevTools
+  end # WebDriver
+end #Selenium

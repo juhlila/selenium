@@ -17,11 +17,33 @@
 # specific language governing permissions and limitations
 # under the License.
 
-require 'selenium/webdriver/support/event_firing_bridge'
-require 'selenium/webdriver/support/abstract_event_listener'
-require 'selenium/webdriver/support/block_event_listener'
-require 'selenium/webdriver/support/escaper'
-require 'selenium/webdriver/support/select'
-require 'selenium/webdriver/support/color'
-require 'selenium/webdriver/support/relative_locator'
-require 'selenium/webdriver/support/cdp_client_generator'
+module Selenium
+  module WebDriver
+    class DevTools
+      class IO
+
+        def initialize(devtools)
+          @devtools = devtools
+        end
+
+        def close(handle:)
+          @devtools.send('IO.close',
+                         handle: handle)
+        end
+
+        def read(handle:, offset:, size:)
+          @devtools.send('IO.read',
+                         handle: handle,
+                         offset: offset,
+                         size: size)
+        end
+
+        def resolve_blob(object_id:)
+          @devtools.send('IO.resolveBlob',
+                         objectId: object_id)
+        end
+
+      end # IO
+    end # DevTools
+  end # WebDriver
+end #Selenium

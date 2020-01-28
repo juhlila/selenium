@@ -17,11 +17,37 @@
 # specific language governing permissions and limitations
 # under the License.
 
-require 'selenium/webdriver/support/event_firing_bridge'
-require 'selenium/webdriver/support/abstract_event_listener'
-require 'selenium/webdriver/support/block_event_listener'
-require 'selenium/webdriver/support/escaper'
-require 'selenium/webdriver/support/select'
-require 'selenium/webdriver/support/color'
-require 'selenium/webdriver/support/relative_locator'
-require 'selenium/webdriver/support/cdp_client_generator'
+module Selenium
+  module WebDriver
+    class DevTools
+      class Log
+
+        def initialize(devtools)
+          @devtools = devtools
+        end
+
+        def clear
+          @devtools.send('Log.clear')
+        end
+
+        def disable
+          @devtools.send('Log.disable')
+        end
+
+        def enable
+          @devtools.send('Log.enable')
+        end
+
+        def start_violations_report(config:)
+          @devtools.send('Log.startViolationsReport',
+                         config: config)
+        end
+
+        def stop_violations_report
+          @devtools.send('Log.stopViolationsReport')
+        end
+
+      end # Log
+    end # DevTools
+  end # WebDriver
+end #Selenium
