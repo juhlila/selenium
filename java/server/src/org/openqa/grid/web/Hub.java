@@ -21,15 +21,18 @@ import org.openqa.grid.common.exception.GridConfigurationException;
 import org.openqa.grid.internal.GridRegistry;
 import org.openqa.grid.internal.utils.configuration.GridHubConfiguration;
 import org.openqa.grid.shared.Stoppable;
+import org.openqa.grid.web.servlet.CleanQueue;
 import org.openqa.grid.web.servlet.DisplayHelpServlet;
 import org.openqa.grid.web.servlet.DriverServlet;
 import org.openqa.grid.web.servlet.Grid1HeartbeatServlet;
 import org.openqa.grid.web.servlet.HubStatusServlet;
 import org.openqa.grid.web.servlet.HubW3CStatusServlet;
 import org.openqa.grid.web.servlet.LifecycleServlet;
+import org.openqa.grid.web.servlet.ListNodesInfo;
 import org.openqa.grid.web.servlet.NodeSessionsServlet;
 import org.openqa.grid.web.servlet.ProxyStatusServlet;
 import org.openqa.grid.web.servlet.RegistrationServlet;
+import org.openqa.grid.web.servlet.ReleaseNodeSession;
 import org.openqa.grid.web.servlet.ResourceServlet;
 import org.openqa.grid.web.servlet.TestSessionStatusServlet;
 import org.openqa.grid.web.servlet.console.ConsoleServlet;
@@ -107,6 +110,14 @@ public class Hub implements Stoppable {
       config.port = 4444;
     }
 
+//    if (config.servlets == null) {
+//      List<String> servList = new ArrayList<>();
+//      servList.add("juhlila.custom.servlet.CleanQueue");
+//      servList.add("juhlila.custom.servlet.ListNodesInfo");
+//      servList.add("juhlila.custom.servlet.ReleaseNodeSession");
+//      config.servlets = servList;
+//    }
+
     if (config.servlets != null) {
       for (String s : config.servlets) {
         Class<? extends Servlet> servletClass = ExtraServletUtil.createServlet(s);
@@ -130,6 +141,9 @@ public class Hub implements Stoppable {
 
     handler.addServlet(DriverServlet.class.getName(), "/wd/hub/*");
     handler.addServlet(DriverServlet.class.getName(), "/selenium-server/driver/*");
+    handler.addServlet(ListNodesInfo.class.getName(), "/grid/admin/ListNodesInfo/*");
+    handler.addServlet(CleanQueue.class.getName(), "/grid/admin/CleanQueue/*");
+    handler.addServlet(ReleaseNodeSession.class.getName(), "/grid/admin/ReleaseNodeSession/*");
 
     handler.addServlet(ProxyStatusServlet.class.getName(), "/grid/api/proxy/*");
     handler.addServlet(NodeSessionsServlet.class.getName(), "/grid/api/sessions/*");

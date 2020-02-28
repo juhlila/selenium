@@ -1,7 +1,7 @@
 {
   "port": 4444,
   "newSessionWaitTimeout": -1,
-  "servlets" : [],
+  "servlets" : ["juhlila.custom.servlet.CleanQueue", "juhlila.custom.servlet.ListNodesInfo", "juhlila.custom.servlet.ReleaseNodeSession"],
   "withoutServlets": [],
   "custom": {},
   "capabilityMatcher": "org.openqa.grid.internal.utils.DefaultCapabilityMatcher",
@@ -9,7 +9,7 @@
   "throwOnCapabilityNotPresent": true,
   "cleanUpCycle": 5000,
   "role": "hub",
-  "debug": false,
-  "browserTimeout": 0,
-  "timeout": 1800
+  "debug": true,
+  "browserTimeout": 180,
+  "timeout": 300
 }

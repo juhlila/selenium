@@ -44,6 +44,9 @@
     <orderEntry type="library" name="testng" level="project" />
     <orderEntry type="library" scope="TEST" name="websocket" level="project" />
     <orderEntry type="library" name="xml-apis" level="project" />
+    <orderEntry type="module" module-name="server" />
+    <orderEntry type="library" name="jetty-security-9.4.12.v20180830-sources" level="project" />
+    <orderEntry type="library" name="jetty-security-9.4.12.v20180830" level="project" />
   </component>
   <component name="sonarModuleSettings">
     <option name="alternativeWorkingDirPath" value="" />

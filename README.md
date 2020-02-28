@@ -2,6 +2,30 @@ Selenium [![Travis Status](https://travis-ci.org/SeleniumHQ/selenium.svg?branch=
 ========
 [![SeleniumHQ](http://www.seleniumhq.org/images/big-logo.png)](http://www.seleniumhq.org/)
 
+
+## Fork
+
+This fork has 3 servlets (CleanQueue, ListNodesInfo, ReleaseNodeSession) forked of tag `selenium-3.141.59`, branch `customServlet`
+its on path:
+
+```
+java/server/src/org/openqa/grid/web/servlet/
+```
+
+To build Selenium standalone, run in the same directory as this file:
+
+```sh
+./go selenium-server-standalone --trace
+```
+
+The jar will be generated on path 
+```
+/buck-out/gen/java/server/src/org/openqa/grid/selenium
+```
+
+## Original README
+
+
 Selenium is an umbrella project encapsulating a variety of tools and
 libraries enabling web browser automation. Selenium specifically
 provides infrastructure for the [W3C WebDriver specification](https://dvcs.w3.org/hg/webdriver/raw-file/tip/webdriver-spec.html)
